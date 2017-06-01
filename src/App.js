@@ -70,16 +70,24 @@ class App extends Component {
   }
 
   clearDisplay(type){
+    var instructions = this.state.instructions
+
     if(type === 'AC'){
-      this.setState({
-        instructions: '0'
-      })
+        instructions = '0'
     }
+
     if(type === 'CE'){
-      this.setState({
-        instructions: this.state.instructions.substring(0, this.state.instructions.length-1)
-      })
+        instructions = instructions.substring(0, instructions.length-1)
     }
+
+    if(instructions === ''){
+        instructions = '0'
+    }
+
+    this.setState({
+      instructions: instructions
+    })
+
   }
 
   operators(operator){
