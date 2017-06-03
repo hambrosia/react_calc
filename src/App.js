@@ -28,7 +28,7 @@ class App extends Component {
       })
     }
 
-    if( (instructions > 1) && (instructions.charAt(0) === '0') ){
+    if( (instructions.length > 1) && (instructions.charAt(0) === '0') ){
         this.setState({
           instructions: instructions.substring(1, instructions.length)
         })
