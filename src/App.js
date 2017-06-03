@@ -1,23 +1,20 @@
 import React, { Component } from 'react';
 import './App.css';
-//import Calc from './Calc'
 
 class App extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      //is this necessary? still works when removed
       instructions: '0',
     };
-    //no clue why this is necessary, shouldn't the state be accessible to the render function already?
     this.updateDigits = this.updateDigits.bind(this);
   }
 
 
   componentDidUpdate (){
 
-    // /([^0-9]0[^.x*+-/])/g     regex for operators followed by leading zero that is not a decimal or operator
+    // /([^0-9]0[^.x*+-/])/g     regex for operators followed by leading zero that are not a decimal or operator
 
     const instructions = this.state.instructions
     const reggie = /([^0-9.]0[^.x*+-/])/g
@@ -42,6 +39,7 @@ class App extends Component {
         instructions: '0'
       })
     }
+
   }
 
 
@@ -95,18 +93,20 @@ class App extends Component {
     var instructions = this.state.instructions
     const lastChar = this.state.instructions.slice(-1)
 
+
     if(instructions === '-' && operator === '-'){
       instructions = '0'
     } else if (instructions === '0' && operator === '-' ){
       instructions = '-'
     }
 
-    if( (instructions !== '0') && (operator !== '-') && (lastChar !== '+') && (lastChar !== '-')  && (lastChar !== '*')  && (lastChar !== '/') ){
-        instructions = this.state.instructions + operator
+    if( (instructions !== '0') && (instructions !== '-')  && (lastChar !== '+') && (lastChar !== '-')  && (lastChar !== '*')  && (lastChar !== '/') ){
+        instructions = instructions + operator
     }
 
+
     if( (instructions === '0') && (operator !== '-') ){
-        instructions = this.state.instructions + operator
+        instructions = instructions + operator
     }
 
     this.setState({
