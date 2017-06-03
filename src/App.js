@@ -21,14 +21,12 @@ class App extends Component {
     const leadingZeros = reggie.exec(instructions)
 
     if(leadingZeros !== null){
-      console.log(leadingZeros.index)
-      console.log(leadingZeros)
       this.setState({
         instructions: instructions.substring(0, leadingZeros.index + 1) + instructions.substring(leadingZeros.index + 2 , instructions.length)
       })
     }
 
-    if( (instructions.length > 1) && (instructions.charAt(0) === '0') ){
+    if( (instructions.length > 1) && (instructions.charAt(0) === '0') && (instructions.charAt(1) !== ('*') ) && (instructions.charAt(1) !== ('/') ) && (instructions.charAt(1) !== ('+') ) ){
         this.setState({
           instructions: instructions.substring(1, instructions.length)
         })
@@ -122,7 +120,6 @@ class App extends Component {
     for(i = 0; i< instructions.length; i++){
       if(instructions[i] === "%"){
         instructions = instructions.substring(0, i) + "*0.01*" + instructions.substring(i + 1, instructions.length)
-        console.log(instructions)
       }
     }
 
@@ -204,7 +201,7 @@ class App extends Component {
   }
 
   changeHandler = (e) => {
-    console.log(e.target.value)
+    //console.log(e.target.value)
     this.setState({
       // .target.value gives you the user's input from the input field
       // to use add onChange={this.changeHandler} to input
